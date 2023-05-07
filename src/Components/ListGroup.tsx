@@ -1,29 +1,37 @@
-import React from "react";
-
+import React, { useState } from "react";
 //import { MouseEvent } from "react";
 
-const ListGroup: React.FC = () => {
-  let items: any = ["Iran", "Jepan", "Brizil", "Indian", "France"];
+interface Props {
+  items: string[];
+  heading: string;
+}
+
+function ListGroup({ items, heading }: Props) {
+  const [selectedIndex, setselectedIndex] = useState(-1);
 
   // items[0] = 3;
   // items[1] = " he the man ";
   // const handlerclick = (event : mouseevent)  => console.log(event);
   const getMessage = () => {
-    //return items.length === 0 && <p>No item Found</p>;
     return items.length === 0 ? <p>No item Found</p> : null;
+    //return items.length === 0 && <p>No item Found</p>;
   };
 
   return (
     <>
-      <h1>List</h1>
+      <h1>{heading}</h1>
       {getMessage()};
       <ul className="list-group">
-        {items.map((item) => (
+        {items.map((item, index) => (
           <li
-            className="list-group-item"
+            className={
+              selectedIndex === index
+                ? "list-group-item active"
+                : "list-group-item"
+            }
             Key={item}
-            //{handlerclick()}
-            onClick={(event) => console.log(event)}
+            //onclick={handlerclick()}
+            onClick={() => setselectedIndex(index)}
           >
             {item}
           </li>
@@ -31,5 +39,5 @@ const ListGroup: React.FC = () => {
       </ul>
     </>
   );
-};
+}
 export default ListGroup;
