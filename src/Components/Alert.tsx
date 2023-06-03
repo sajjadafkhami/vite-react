@@ -1,14 +1,14 @@
-import React, { Children, ReactNode } from "react";
+import React, { text, ReactNode } from "react";
 
 interface Props {
-  children: ReactNode;
-  onclose: () => void;
+  // text: ReactNode;
+  // onclose: () => void;
 }
 
-const alert = ({ children, onclose }: Props) => {
+const alert = ({ text, onclose }: Props) => {
   return (
     <div className="alert alert-primary alert-dismissible">
-      {children}
+      {text}
 
       <button
         type="button"
